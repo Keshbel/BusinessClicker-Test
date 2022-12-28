@@ -10,6 +10,7 @@
       <e p="Assets" t="Include">
         <e p="Datas" t="Include" />
         <e p="Media" t="Include">
+          <e p="Audio" t="Include" />
           <e p="Fonts" t="Include" />
           <e p="UI" t="Include">
             <e p="cga_ui_gold" t="Include" />
@@ -189,6 +190,7 @@
         <e p="Resources" t="Include" />
         <e p="Scenes" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="AudioBase.cs" t="Include" />
           <e p="BalanceController.cs" t="Include" />
           <e p="Business" t="Include">
             <e p="BusinessConfig.cs" t="Include" />

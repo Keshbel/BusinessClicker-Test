@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BalanceController : MonoBehaviour
 {
-    public TMP_Text balanceTMP;
+    [SerializeField] private TMP_Text balanceTMP;
 
     [SerializeField] private int balance;
     public int Balance

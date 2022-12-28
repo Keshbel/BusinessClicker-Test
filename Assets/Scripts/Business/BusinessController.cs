@@ -11,26 +11,26 @@ public class BusinessController : MonoBehaviour
     public BusinessData baseData;
     
     [Header("TMP")]
-    public TMP_Text nameTMP;
-    public TMP_Text levelTMP;
-    public TMP_Text incomeTMP;
-    public TMP_Text levelUpPriceTMP;
+    [SerializeField] private TMP_Text nameTMP;
+    [SerializeField] private TMP_Text levelTMP;
+    [SerializeField] private TMP_Text incomeTMP;
+    [SerializeField] private TMP_Text levelUpPriceTMP;
     [Space]
-    public TMP_Text upgrade1NameTMP;
-    public TMP_Text upgrade1IncomeTMP;
-    public TMP_Text upgrade1PriceTMP;
+    [SerializeField] private TMP_Text upgrade1NameTMP;
+    [SerializeField] private TMP_Text upgrade1IncomeTMP;
+    [SerializeField] private TMP_Text upgrade1PriceTMP;
     [Space]
-    public TMP_Text upgrade2NameTMP;
-    public TMP_Text upgrade2IncomeTMP;
-    public TMP_Text upgrade2PriceTMP;
+    [SerializeField] private TMP_Text upgrade2NameTMP;
+    [SerializeField] private TMP_Text upgrade2IncomeTMP;
+    [SerializeField] private TMP_Text upgrade2PriceTMP;
 
     [Header("Buttons")] 
-    public Button levelUpButton;
-    public Button upgrade1Button;
-    public Button upgrade2Button;
+    [SerializeField] private Button levelUpButton;
+    [SerializeField] private Button upgrade1Button;
+    [SerializeField] private Button upgrade2Button;
 
     [Header("Progress Bar")] 
-    public Image progressBar;
+    [SerializeField] private Image progressBar;
     public float currentBarValue;
     public float delayBarValue;
     
@@ -49,11 +49,11 @@ public class BusinessController : MonoBehaviour
 
     void Awake()
     {
-        BalanceController.Instance.BalanceChangedAction += ButtonAccessibility;
+        BalanceController.Instance.BalanceChangedAction += CheckButtonAccessibility;
 
         levelUpButton.onClick.AddListener(LevelUp);
-        upgrade1Button.onClick.AddListener(Upgrade1);
-        upgrade2Button.onClick.AddListener(Upgrade2);
+        upgrade1Button.onClick.AddListener(OnUpgrade1Button);
+        upgrade2Button.onClick.AddListener(OnUpgrade2Button);
     }
 
     private void Start()
@@ -88,7 +88,7 @@ public class BusinessController : MonoBehaviour
         upgrade2IncomeTMP.text = "+" + baseData.baseUpgrade2Income + "%";
         UpdateUpgrade2();
         
-        ButtonAccessibility();
+        CheckButtonAccessibility();
 
         if (level >= 1) StartCoroutine(ProgressBarRoutine());
     }
@@ -111,7 +111,7 @@ public class BusinessController : MonoBehaviour
         }
     }
 
-    public void ButtonAccessibility()
+    public void CheckButtonAccessibility()
     {
         levelUpButton.interactable = BalanceController.Instance.PurchaseAvailability(levelUpPrice);
         upgrade1Button.interactable = BalanceController.Instance.PurchaseAvailability(baseData.baseUpgrade1Price) &&
@@ -135,7 +135,7 @@ public class BusinessController : MonoBehaviour
         if (level == 1) StartCoroutine(ProgressBarRoutine());
     }
 
-    public void Upgrade1()
+    public void OnUpgrade1Button()
     {
         AudioBase.Instance.ClickButton();
         
@@ -148,7 +148,7 @@ public class BusinessController : MonoBehaviour
         UpdateUpgrade1();
     }
     
-    public void Upgrade2()
+    public void OnUpgrade2Button()
     {
         AudioBase.Instance.ClickButton();
         
